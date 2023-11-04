@@ -1,16 +1,20 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
-import GatesInfo from 'starseeker-components/GatesInfo/GatesInfo';
-import {GateArray} from 'starseeker-types/temp';
+import {GateInfo} from 'starseeker-types/types';
+import GateTile from './GateTile/GateTile';
 
-function Home(): JSX.Element {
+function GatesInfo({gateArray}: {gateArray: GateInfo[]}): React.JSX.Element {
   return (
     <SafeAreaView>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.backgroundStyle}>
         <View style={styles.container}>
-          <GatesInfo gateArray={GateArray} />
+          {gateArray.map((v, i) => (
+            <View key={i}>
+              <GateTile gateInfo={v} index={i} />
+            </View>
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -27,4 +31,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default GatesInfo;
