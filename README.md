@@ -43,3 +43,5 @@ There are 3 pages to the application:
   - API calls are made asynchronously via a re-usable Axios function, which means we don't need to define a new call for every endpoint and we don't need to worry about handling endpoints and tokens within components directly.
 - **State & Callbacks**
   - Through a combination of the above, I keep network and data handling at the screen level instead of at the component level. This allows the screen to manage the data available in a singular location.
+- **Conventional Commits**
+  - The Conventional Commits specification is a lightweight convention on top of commit messages. It provides an easy set of rules for creating an explicit commit history; which makes it easier to write automated tools. You can read more about this at the [Conventional Commit Website](https://www.conventionalcommits.org/en/v1.0.0/)
