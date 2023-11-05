@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {GateInfo} from 'starseeker-types/types';
 
 function GateTile({
@@ -20,7 +20,7 @@ function GateTile({
 
   return (
     <>
-      <TouchableOpacity
+      <Pressable
         style={[
           styles.container,
           {backgroundColor: backgroundColours[index % 5]},
@@ -46,7 +46,7 @@ function GateTile({
             ))}
           </View>
         ) : null}
-      </TouchableOpacity>
+      </Pressable>
     </>
   );
 }
