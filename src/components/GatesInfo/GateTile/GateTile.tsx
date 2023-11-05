@@ -25,7 +25,8 @@ function GateTile({
           styles.container,
           {backgroundColor: backgroundColours[index % 5]},
         ]}
-        onPress={() => setExpanded(!expanded)}>
+        onPress={() => setExpanded(!expanded)}
+        testID={`GateTileIndex${index}`}>
         <View style={styles.titleContainer}>
           <View>
             <Text style={styles.name}>{gateInfo.name}</Text>
