@@ -4,6 +4,7 @@ import CosterInput from 'starseeker-components/CosterInput/CosterInput';
 import CosterOutput from 'starseeker-components/CosterOutput/CosterOutput';
 import {axiosRequest} from 'starseeker-lib/functions';
 import {CostInputs, CostResult} from 'starseeker-types/types';
+import {API_ENDPOINT} from '@env';
 
 function Coster({
   requestUrl,
@@ -18,7 +19,7 @@ function Coster({
   async function getCost(costInputs: CostInputs) {
     setCostResult(null);
     const responseData = await axiosRequest(
-      `https://hstc-api.testing.keyholding.com/transport/${costInputs.distance}?passengers=${costInputs.passengers}&parking=${costInputs.parkingDays}`,
+      `${API_ENDPOINT}/transport/${costInputs.distance}?passengers=${costInputs.passengers}&parking=${costInputs.parkingDays}`,
       'GET',
     );
     setCostInputs(costInputs);

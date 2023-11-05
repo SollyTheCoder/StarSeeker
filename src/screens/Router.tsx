@@ -9,6 +9,7 @@ import {
   RouteInputs,
   RouteResult,
 } from 'starseeker-types/types';
+import {API_ENDPOINT} from '@env';
 
 function Router(): JSX.Element {
   const [gateList, setGateList] = useState<GateListItem[] | null>(null);
@@ -18,7 +19,7 @@ function Router(): JSX.Element {
   async function getJourney(routeInputs: RouteInputs) {
     setRouteResult(null);
     const responseData = await axiosRequest(
-      `https://hstc-api.testing.keyholding.com/gates/${routeInputs.fromGate}/to/${routeInputs.toGate}`,
+      `${API_ENDPOINT}/gates/${routeInputs.fromGate}/to/${routeInputs.toGate}`,
       'GET',
     );
     setRouteInputs(routeInputs);
@@ -26,10 +27,7 @@ function Router(): JSX.Element {
   }
 
   async function getGates() {
-    const responseData = await axiosRequest(
-      'https://hstc-api.testing.keyholding.com/gates',
-      'GET',
-    );
+    const responseData = await axiosRequest(`${API_ENDPOINT}/gates`, 'GET');
     setGateList(
       responseData.data.map((gateInfo: GateInfo, i: number) => ({
         key: i,

@@ -1,4 +1,5 @@
 import axios, {AxiosError} from 'axios';
+import {API_KEY} from '@env';
 
 export const axiosRequest = async (
   url: string,
@@ -11,7 +12,7 @@ export const axiosRequest = async (
       method: method,
       data: data,
       headers: {
-        'x-api-key': '',
+        'x-api-key': API_KEY,
       },
     });
     return {data: response.data, status: response.status};
