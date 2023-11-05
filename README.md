@@ -1,79 +1,45 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Intro
 
-# Getting Started
+**Star Seeker** is a revolutionary app that calculates the cost of your interstellar journeys, finds efficient routes through a network of gates, and provides detailed gate information.
+We've added a "Journey Memory" feature, allowing you to save your favourite routes for future adventures. With a sleek and user-friendly interface, our app ensures a delightful experience. Join us in this mission to redefine the future of travel, one hyperspace jump at a time. The cosmos is calling, and the journey begins with Star Seeker. Start your cosmic adventure now!
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Prerequisites
 
-## Step 1: Start the Metro Server
+1. Install nodeJS and follow the React Native setup guide - [React Native Environment Setup](https://reactnative.dev/docs/environment-setup)
+2. Clone the repo and CD into the _StarSeeker_ directory
+3. In order to run the app, we will need to supply some environment variables so please create a .env file in the root of the project and add the following (replacing with appropriate values):
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+   .env
 
-To start Metro, run the following command from the _root_ of your React Native project:
+   ```
+   API_KEY=YOURAPIKEY
+   API_ENDPOINT=APIENDPOINT
+   ```
 
-```bash
-# using npm
-npm start
+4. Run the following command to start the application
+   ```
+   npm run start
+   ```
+   Then select which platform you wish to run the application with
 
-# OR using Yarn
-yarn start
-```
+## Getting Started
 
-## Step 2: Start your Application
+There are 3 pages to the application:
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+- Home: provides a view of the hyperspace gates that are available on the network. By clicking on a gate, you can see which gates are directly connected to it and the cost of using that particular transfer service.
+- Coster: provides a cost analysis calculator based on 3 parameters: distance to travel, number of passengers and number of parking days. After entering the desired information, you can press _Go!_ and you will be presented with the cheapest means of transport given your desired journey.
+- Router: provides a cost analysis view of any 2 gates on the network. After selecting 2 gates, you will be given the most cost effective route between the gates - which sometimes means making more transfers even if a direct route is available.
 
-### For Android
+## Approach
 
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- **Componentisation**
+  - Components have been made with TDD in mind by passing variables and callbacks functions to each component. This allows us to isolate the component for testing as we can mock and validate function calls & parameter loading.
+- **Navigation**
+  - Navigating within the app relies on a bottom navigation component which hosts all 3 screens used. This allows us to neatly define our navigation structure and have good visibility of the navigation stack as a whole.
+- **Environment**
+  - To avoid prop drilling and git security issues (in the form of committing API keys), I have added a .env file that provides access to environmental constants that are used in the app (API_KEY & API_ENDPOINT).
+  - This allows developers to use different setups for the same app and could be used for staging/pre-prod environments as well.
+- **Connectivity**
+  - API calls are made asynchronously via a re-usable Axios function, which means we don't need to define a new call for every endpoint and we don't need to worry about handling endpoints and tokens within components directly.
+- **State & Callbacks**
+  - Through a combination of the above, I keep network and data handling at the screen level instead of at the component level. This allows the screen to manage the data available in a singular location.
