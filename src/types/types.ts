@@ -9,3 +9,20 @@ export type GateInfo = {
   }[];
   code: string;
 };
+
+export type CostInputs = {
+  distance: number;
+  passengers: number;
+  parkingDays: number;
+};
+
+export type CostResult = {
+  recommendedTransport: {
+    name: string;
+    ratePerAu: number;
+    capacity: number;
+  };
+  journeyCost: number;
+  parkingFee: number;
+  currency: string;
+};

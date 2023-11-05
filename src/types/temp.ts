@@ -156,3 +156,14 @@ export const GateArray = [
     code: 'G2',
   },
 ];
+
+export const CostResultTemp = {
+  recommendedTransport: {
+    name: 'HSTC Shuttle',
+    ratePerAu: 0.45,
+    capacity: 5,
+  },
+  journeyCost: 22.5,
+  parkingFee: 2.4,
+  currency: 'GBP',
+};
