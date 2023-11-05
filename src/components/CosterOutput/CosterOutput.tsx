@@ -15,8 +15,6 @@ function CosterOutput({
   costResult,
   costInputs,
 }: CosterOutputProps): React.JSX.Element {
-  console.log(costResult);
-  console.log(costInputs);
   if (costResult == null || costInputs == null) {
     return <></>;
   }

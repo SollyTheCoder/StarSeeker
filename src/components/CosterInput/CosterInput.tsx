@@ -21,7 +21,7 @@ function CosterInput({
   submitCallback,
   maxPassengers,
 }: CosterInputProps): React.JSX.Element {
-  const [distance, setDistance] = useState('0');
+  const [distance, setDistance] = useState('1');
   const [passengers, setPassengers] = useState(1);
   const [parkingDays, setParkingDays] = useState('0');
 
