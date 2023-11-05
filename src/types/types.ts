@@ -26,3 +26,35 @@ export type CostResult = {
   parkingFee: number;
   currency: string;
 };
+
+export type RouteInputs = {
+  toGate: string;
+  fromGate: string;
+};
+
+export type RouteResult = {
+  from: {
+    updatedAt: null | number;
+    createdAt: number;
+    uuid: string;
+    links: {
+      hu: string;
+      code: string;
+    }[];
+    name: string;
+    code: string;
+  };
+  to: {
+    updatedAt: null | number;
+    createdAt: number;
+    uuid: string;
+    links: {
+      hu: string;
+      code: string;
+    }[];
+    name: string;
+    code: string;
+  };
+  route: string[];
+  totalCost: number;
+};
