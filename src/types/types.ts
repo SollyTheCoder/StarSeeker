@@ -58,3 +58,8 @@ export type RouteResult = {
   route: string[];
   totalCost: number;
 };
+
+export type GateListItem = {
+  key: string;
+  value: string;
+};

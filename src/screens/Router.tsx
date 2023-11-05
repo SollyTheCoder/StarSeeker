@@ -1,25 +1,54 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import RouterInput from 'starseeker-components/RouterInput/RouterInput';
 import RouterOutput from 'starseeker-components/RouterOutput/RouterOutput';
-import {RouteResultTemp} from 'starseeker-types/temp';
-import {RouteInputs, RouteResult} from 'starseeker-types/types';
+import {axiosRequest} from 'starseeker-lib/functions';
+import {
+  GateInfo,
+  GateListItem,
+  RouteInputs,
+  RouteResult,
+} from 'starseeker-types/types';
 
 function Router(): JSX.Element {
+  const [gateList, setGateList] = useState<GateListItem[] | null>(null);
   const [routeInputs, setRouteInputs] = useState<RouteInputs | null>(null);
   const [routeResult, setRouteResult] = useState<RouteResult | null>(null);
 
-  function getJourney(routeInputs: RouteInputs) {
+  async function getJourney(routeInputs: RouteInputs) {
+    setRouteResult(null);
+    const responseData = await axiosRequest(
+      `https://hstc-api.testing.keyholding.com/gates/${routeInputs.fromGate}/to/${routeInputs.toGate}`,
+      'GET',
+    );
     setRouteInputs(routeInputs);
-    setRouteResult(RouteResultTemp);
+    setRouteResult(responseData.data);
   }
+
+  async function getGates() {
+    const responseData = await axiosRequest(
+      'https://hstc-api.testing.keyholding.com/gates',
+      'GET',
+    );
+    setGateList(
+      responseData.data.map((gateInfo: GateInfo, i: number) => ({
+        key: i,
+        value: gateInfo.code,
+      })),
+    );
+  }
+
+  useEffect(() => {
+    getGates();
+  }, []);
+
   return (
     <SafeAreaView>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.backgroundStyle}>
         <View style={styles.container}>
-          <RouterInput submitCallback={getJourney} />
+          <RouterInput gateList={gateList} submitCallback={getJourney} />
           <RouterOutput routeResult={routeResult} routeInputs={routeInputs} />
         </View>
       </ScrollView>

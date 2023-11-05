@@ -1,4 +1,4 @@
-export const GateArray = [
+export const GateArrayTemp = [
   {
     createdAt: 1698836493508,
     updatedAt: null,

@@ -3,7 +3,12 @@ import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import {GateInfo} from 'starseeker-types/types';
 import GateTile from './GateTile/GateTile';
 
-function GatesInfo({gateArray}: {gateArray: GateInfo[]}): React.JSX.Element {
+function GatesInfo({
+  gateArray,
+}: {
+  gateArray: GateInfo[] | null;
+}): React.JSX.Element {
+  if (gateArray == null) return <></>;
   return (
     <SafeAreaView>
       <ScrollView

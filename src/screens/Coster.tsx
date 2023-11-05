@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import CosterInput from 'starseeker-components/CosterInput/CosterInput';
 import CosterOutput from 'starseeker-components/CosterOutput/CosterOutput';
-import {CostResultTemp} from 'starseeker-types/temp';
+import {axiosRequest} from 'starseeker-lib/functions';
 import {CostInputs, CostResult} from 'starseeker-types/types';
 
 function Coster({
@@ -14,9 +14,15 @@ function Coster({
 }): JSX.Element {
   const [costResult, setCostResult] = useState<CostResult | null>(null);
   const [costInputs, setCostInputs] = useState<CostInputs | null>(null);
-  function getCost(costInputs: CostInputs) {
+
+  async function getCost(costInputs: CostInputs) {
+    setCostResult(null);
+    const responseData = await axiosRequest(
+      `https://hstc-api.testing.keyholding.com/transport/${costInputs.distance}?passengers=${costInputs.passengers}&parking=${costInputs.parkingDays}`,
+      'GET',
+    );
     setCostInputs(costInputs);
-    setCostResult(CostResultTemp);
+    setCostResult(responseData.data);
   }
 
   return (

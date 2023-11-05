@@ -2,32 +2,29 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {SelectList} from 'react-native-dropdown-select-list';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {RouteInputs} from 'starseeker-types/types';
+import {GateListItem, RouteInputs} from 'starseeker-types/types';
 
 type RouterInputProps = {
+  gateList: GateListItem[] | null;
   submitCallback: (inputs: RouteInputs) => void;
 };
 
-function RouterInput({submitCallback}: RouterInputProps): React.JSX.Element {
+function RouterInput({
+  gateList,
+  submitCallback,
+}: RouterInputProps): React.JSX.Element {
   const [fromGate, setFromGate] = useState('');
   const [toGate, setToGate] = useState('');
-  const gateList = [
-    {key: '1', value: 'Gate 1'},
-    {key: '2', value: 'Gate 2'},
-    {key: '3', value: 'Gate 3'},
-    {key: '4', value: 'Gate 4'},
-    {key: '5', value: 'Gate 5'},
-    {key: '6', value: 'Gate 6'},
-    {key: '7', value: 'Gate 7'},
-  ];
 
   function requestResult() {
-    if (toGate == '' || fromGate == '') return;
+    if (toGate === '' || fromGate === '') return;
     submitCallback({
       toGate,
       fromGate,
     });
   }
+
+  if (gateList == null) return <></>;
 
   return (
     <>
