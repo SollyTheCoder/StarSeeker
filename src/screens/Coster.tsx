@@ -1,20 +1,15 @@
 import React, {useState} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import CosterInput from 'starseeker-components/CosterInput/CosterInput';
 import CosterOutput from 'starseeker-components/CosterOutput/CosterOutput';
 import {axiosRequest} from 'starseeker-lib/functions';
 import {CostInputs, CostResult} from 'starseeker-types/types';
 import {API_ENDPOINT} from '@env';
 
-function Coster({
-  requestUrl,
-  maxPassengers,
-}: {
-  requestUrl: string;
-  maxPassengers: number;
-}): JSX.Element {
+function Coster(): JSX.Element {
   const [costResult, setCostResult] = useState<CostResult | null>(null);
   const [costInputs, setCostInputs] = useState<CostInputs | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   async function getCost(costInputs: CostInputs) {
     setCostResult(null);
@@ -22,6 +17,9 @@ function Coster({
       `${API_ENDPOINT}/transport/${costInputs.distance}?passengers=${costInputs.passengers}&parking=${costInputs.parkingDays}`,
       'GET',
     );
+    if (responseData.status !== 200) {
+      return setErrorMessage('There was an issue retrieving cost information');
+    }
     setCostInputs(costInputs);
     setCostResult(responseData.data);
   }
@@ -33,6 +31,7 @@ function Coster({
         style={styles.backgroundStyle}>
         <View style={styles.container}>
           <CosterInput submitCallback={getCost} maxPassengers={5} />
+          <Text>{errorMessage}</Text>
           <CosterOutput costResult={costResult} costInputs={costInputs} />
         </View>
       </ScrollView>
