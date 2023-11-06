@@ -38,8 +38,8 @@ function GateTile({
         </View>
         {expanded ? (
           <View style={styles.expanded}>
-            {gateInfo.links.map((value, index) => (
-              <View key={index} style={styles.expandedLinks}>
+            {gateInfo.links.map((value, infoIndex) => (
+              <View key={infoIndex} style={styles.expandedLinks}>
                 <Text>{value.code}</Text>
                 <Text> - </Text>
                 <Text>{value.hu}</Text>

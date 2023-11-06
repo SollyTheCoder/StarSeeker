@@ -11,7 +11,6 @@ const gateArray = [
     links: [
       {hu: '1', code: 'Alpha'},
       {hu: '2', code: 'Bravo'},
-      {hu: '3', code: 'Charlie'},
     ],
     code: 'G1',
   },
@@ -36,6 +35,7 @@ test('renders the GatesInfo component with gate information - unpressed', () => 
   gateArray.forEach(gate => {
     expect(getByText(gate.name)).toBeTruthy();
     expect(getByText(gate.code)).toBeTruthy();
+    expect(getByText(`#${gate.links.length}`)).toBeTruthy();
     expect(queryByText(gate.links[0].code)).toBeNull();
   });
 });
@@ -48,7 +48,6 @@ test('renders the GatesInfo pressing functionality', () => {
   const gateTile1 = getByTestId('GateTileIndex0');
   fireEvent.press(gateTile1);
 
-  // Test that each gate name and code is present in the rendered component
   expect(getByText(gateArray[0].name)).toBeTruthy();
   expect(getByText(gateArray[0].code)).toBeTruthy();
   expect(getByText(gateArray[0].links[0].code)).toBeTruthy();

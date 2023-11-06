@@ -35,7 +35,9 @@ function RouterInput({
             size={25}
             name="ray-start"
           />
-          <View style={styles.dropdownContainer}>
+          <View
+            testID="SelectListContainerFromGate"
+            style={styles.dropdownContainer}>
             <SelectList
               setSelected={setFromGate}
               data={gateList}
@@ -49,12 +51,17 @@ function RouterInput({
             size={25}
             name="ray-end"
           />
-          <View style={styles.dropdownContainer}>
+          <View
+            testID="SelectListContainerToGate"
+            style={styles.dropdownContainer}>
             <SelectList setSelected={setToGate} data={gateList} save="value" />
           </View>
         </View>
       </View>
-      <TouchableOpacity style={styles.goButton} onPress={() => requestResult()}>
+      <TouchableOpacity
+        testID="RouterInputGo"
+        style={styles.goButton}
+        onPress={() => requestResult()}>
         <Text>Go!</Text>
       </TouchableOpacity>
     </>
