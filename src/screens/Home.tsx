@@ -1,25 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import GatesInfo from 'starseeker-components/GatesInfo/GatesInfo';
 import {axiosRequest} from 'starseeker-lib/functions';
 import {GateInfo} from 'starseeker-types/types';
-import {API_ENDPOINT} from '@env';
+import {ApiContext} from '../context/ApiContext';
 
 function Home(): JSX.Element {
   const [gateArray, setGateArray] = useState<GateInfo[] | null>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const api = useContext(ApiContext);
 
-  async function getData() {
-    const responseData = await axiosRequest(`${API_ENDPOINT}/gates`, 'GET');
+  const getData = useCallback(async () => {
+    const responseData = await axiosRequest(`${api}/gates`, 'GET');
     if (responseData.status !== 200) {
       return setErrorMessage('There was an issue retrieving gate information');
     }
     setGateArray(responseData.data);
-  }
+  }, [api]);
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
 
   return (
     <SafeAreaView>

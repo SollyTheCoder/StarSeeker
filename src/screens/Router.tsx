@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import RouterInput from 'starseeker-components/RouterInput/RouterInput';
 import RouterOutput from 'starseeker-components/RouterOutput/RouterOutput';
@@ -9,18 +9,19 @@ import {
   RouteInputs,
   RouteResult,
 } from 'starseeker-types/types';
-import {API_ENDPOINT} from '@env';
+import {ApiContext} from '../context/ApiContext';
 
 function Router(): JSX.Element {
   const [gateList, setGateList] = useState<GateListItem[] | null>(null);
   const [routeInputs, setRouteInputs] = useState<RouteInputs | null>(null);
   const [routeResult, setRouteResult] = useState<RouteResult | null>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const api = useContext(ApiContext);
 
   async function getJourney(routeInputs: RouteInputs) {
     setRouteResult(null);
     const responseData = await axiosRequest(
-      `${API_ENDPOINT}/gates/${routeInputs.fromGate}/to/${routeInputs.toGate}`,
+      `${api}/gates/${routeInputs.fromGate}/to/${routeInputs.toGate}`,
       'GET',
     );
     if (responseData.status !== 200) {
@@ -30,8 +31,8 @@ function Router(): JSX.Element {
     setRouteResult(responseData.data);
   }
 
-  async function getGates() {
-    const responseData = await axiosRequest(`${API_ENDPOINT}/gates`, 'GET');
+  const getGates = useCallback(async () => {
+    const responseData = await axiosRequest(`${api}/gates`, 'GET');
     if (responseData.status !== 200) {
       return setErrorMessage('There was an issue retrieving gates for routing');
     }
@@ -41,11 +42,11 @@ function Router(): JSX.Element {
         value: gateInfo.code,
       })),
     );
-  }
+  }, [api]);
 
   useEffect(() => {
     getGates();
-  }, []);
+  }, [getGates]);
 
   return (
     <SafeAreaView>
