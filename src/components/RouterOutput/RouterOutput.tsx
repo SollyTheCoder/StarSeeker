@@ -7,11 +7,15 @@ import {RouteInputs, RouteResult} from 'starseeker-types/types';
 type RouterOutputProps = {
   routeResult: null | RouteResult;
   routeInputs: null | RouteInputs;
+  saveCallback?: () => void;
+  deleteCallback?: () => void;
 };
 
 function RouterOutput({
   routeResult,
   routeInputs,
+  saveCallback,
+  deleteCallback,
 }: RouterOutputProps): React.JSX.Element {
   if (routeResult == null) {
     return <></>;
@@ -57,6 +61,15 @@ function RouterOutput({
           ))}
         </View>
       </View>
+      <View style={styles.bottomButtons}>
+        {saveCallback !== undefined ? (
+          <AntDesign onPress={saveCallback} size={25} name="save" />
+        ) : deleteCallback !== undefined ? (
+          <AntDesign onPress={deleteCallback} size={25} name="delete" />
+        ) : (
+          <></>
+        )}
+      </View>
     </View>
   );
 }
@@ -75,6 +88,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   input: {
+    flexDirection: 'row',
+  },
+  bottomButtons: {
+    justifyContent: 'space-evenly',
     flexDirection: 'row',
   },
   result: {

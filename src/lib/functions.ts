@@ -1,5 +1,7 @@
 import axios, {AxiosError} from 'axios';
 import {API_KEY} from '@env';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {SavedRoute} from 'starseeker-types/types';
 
 export const axiosRequest = async (
   url: string,
@@ -24,5 +26,24 @@ export const axiosRequest = async (
     } else {
       return {data: 'Unknown error', status: 500};
     }
+  }
+};
+
+export const storeRouteData = async (value: SavedRoute[]) => {
+  try {
+    const jsonValue = JSON.stringify(value);
+    await AsyncStorage.setItem('routeData', jsonValue);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
+export const getRouteData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('routeData');
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (e) {
+    return null;
   }
 };

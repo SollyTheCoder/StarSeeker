@@ -63,3 +63,8 @@ export type GateListItem = {
   key: string;
   value: string;
 };
+
+export type SavedRoute = {
+  routeInputs: RouteInputs;
+  routeResult: RouteResult;
+};
