@@ -1,20 +1,21 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import CosterInput from 'starseeker-components/CosterInput/CosterInput';
 import CosterOutput from 'starseeker-components/CosterOutput/CosterOutput';
 import {axiosRequest} from 'starseeker-lib/functions';
 import {CostInputs, CostResult} from 'starseeker-types/types';
-import {API_ENDPOINT} from '@env';
+import {ApiContext} from '../context/ApiContext';
 
 function Coster(): JSX.Element {
   const [costResult, setCostResult] = useState<CostResult | null>(null);
   const [costInputs, setCostInputs] = useState<CostInputs | null>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const api = useContext(ApiContext);
 
   async function getCost(costInputs: CostInputs) {
     setCostResult(null);
     const responseData = await axiosRequest(
-      `${API_ENDPOINT}/transport/${costInputs.distance}?passengers=${costInputs.passengers}&parking=${costInputs.parkingDays}`,
+      `${api}/transport/${costInputs.distance}?passengers=${costInputs.passengers}&parking=${costInputs.parkingDays}`,
       'GET',
     );
     if (responseData.status !== 200) {
