@@ -46,3 +46,9 @@ There are 3 pages to the application:
   - Through a combination of the above, I keep network and data handling at the screen level instead of at the component level. This allows the screen to manage the data available in a singular location.
 - **Conventional Commits**
   - The Conventional Commits specification is a lightweight convention on top of commit messages. It provides an easy set of rules for creating an explicit commit history; which makes it easier to write automated tools. You can read more about this at the [Conventional Commit Website](https://www.conventionalcommits.org/en/v1.0.0/)
+
+## Bonus Tasks
+
+In the master branch I had some time to write some unit tests for the GateInfo and the RouterInput components. Given some more time I would write similar tests for the remaining components and the screens & functions used in the app.
+
+I implemented a simple state persistence for the router page in a separate branch. The method for running the application will be the same and you can make use of the saving functionality by using the _save_ and _delete_ buttons on the router screen.
