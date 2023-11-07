@@ -9,7 +9,7 @@ import {
   RouteInputs,
   RouteResult,
 } from 'starseeker-types/types';
-import {ApiContext} from '../context/ApiContext';
+import {ApiContext} from 'starseeker-context/ApiContext';
 
 function Router(): JSX.Element {
   const [gateList, setGateList] = useState<GateListItem[] | null>(null);

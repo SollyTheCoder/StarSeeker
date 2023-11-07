@@ -19,6 +19,7 @@ module.exports = {
           'starseeker-styles': ['./src/styles'],
           'starseeker-types': ['./src/types'],
           'starseeker-lib': ['./src/lib'],
+          'starseeker-context': ['./src/context'],
         },
       },
     ],

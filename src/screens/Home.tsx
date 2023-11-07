@@ -3,7 +3,7 @@ import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import GatesInfo from 'starseeker-components/GatesInfo/GatesInfo';
 import {axiosRequest} from 'starseeker-lib/functions';
 import {GateInfo} from 'starseeker-types/types';
-import {ApiContext} from '../context/ApiContext';
+import {ApiContext} from 'starseeker-context/ApiContext';
 
 function Home(): JSX.Element {
   const [gateArray, setGateArray] = useState<GateInfo[] | null>(null);

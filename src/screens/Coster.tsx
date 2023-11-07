@@ -4,7 +4,7 @@ import CosterInput from 'starseeker-components/CosterInput/CosterInput';
 import CosterOutput from 'starseeker-components/CosterOutput/CosterOutput';
 import {axiosRequest} from 'starseeker-lib/functions';
 import {CostInputs, CostResult} from 'starseeker-types/types';
-import {ApiContext} from '../context/ApiContext';
+import {ApiContext} from 'starseeker-context/ApiContext';
 
 function Coster(): JSX.Element {
   const [costResult, setCostResult] = useState<CostResult | null>(null);
