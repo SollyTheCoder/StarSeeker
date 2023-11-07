@@ -19,6 +19,7 @@ We've added a "Journey Memory" feature, allowing you to save your favourite rout
 4. Run the following commands to start the application
    ```
    npm i
+   npx pod-install #(ios specific command)
    npm run start
    ```
    Then select which platform you wish to run the application with
