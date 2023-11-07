@@ -14,13 +14,9 @@ import {CostInputs} from 'starseeker-types/types';
 
 type CosterInputProps = {
   submitCallback: (inputs: CostInputs) => void;
-  maxPassengers: number;
 };
 
-function CosterInput({
-  submitCallback,
-  maxPassengers,
-}: CosterInputProps): React.JSX.Element {
+function CosterInput({submitCallback}: CosterInputProps): React.JSX.Element {
   const [distance, setDistance] = useState('1');
   const [passengers, setPassengers] = useState(1);
   const [parkingDays, setParkingDays] = useState('0');

@@ -109,10 +109,6 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginLeft: 37,
   },
-  resultTextIcon: {
-    marginLeft: 10,
-    justifyContent: 'flex-start',
-  },
   journies: {flexDirection: 'column', width: '100%'},
   journey: {
     flexDirection: 'row',

@@ -31,7 +31,7 @@ function Coster(): JSX.Element {
         contentInsetAdjustmentBehavior="automatic"
         style={styles.backgroundStyle}>
         <View style={styles.container}>
-          <CosterInput submitCallback={getCost} maxPassengers={5} />
+          <CosterInput submitCallback={getCost} />
           <Text>{errorMessage}</Text>
           <CosterOutput costResult={costResult} costInputs={costInputs} />
         </View>

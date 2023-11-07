@@ -88,32 +88,6 @@ const styles = StyleSheet.create({
   dropdownContainer: {
     width: '80%',
   },
-  parkingDaysInput: {
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-    marginLeft: 15,
-  },
-  distanceInputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    marginLeft: 7,
-  },
-  parkingDaysInputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    marginLeft: 7,
-  },
-  passengersInputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  passengersIconsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   goButton: {
     backgroundColor: 'gold',
     width: '100%',
