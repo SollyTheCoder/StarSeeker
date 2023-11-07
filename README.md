@@ -50,6 +50,6 @@ There are 3 pages to the application:
 
 ## Bonus Tasks
 
-In the master branch I had some time to write some unit tests for the GateInfo and the RouterInput components. Given some more time I would write similar tests for the remaining components and the screens & functions used in the app.
+In the master branch I had some time to write some unit tests for the GateInfo and the RouterInput components. Given some more time I would write similar tests for the remaining components and the screens & functions used in the app. Tests can be run with: `npm test`
 
 I implemented a simple state persistence for the router page in a separate branch. The method for running the application will be the same and you can make use of the saving functionality by using the _save_ and _delete_ buttons on the router screen.
