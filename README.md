@@ -16,8 +16,9 @@ We've added a "Journey Memory" feature, allowing you to save your favourite rout
    API_ENDPOINT=APIENDPOINT
    ```
 
-4. Run the following command to start the application
+4. Run the following commands to start the application
    ```
+   npm i
    npm run start
    ```
    Then select which platform you wish to run the application with
